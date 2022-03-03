@@ -1,0 +1,230 @@
+{
+	"info": {
+		"_postman_id": "6927d257-55fc-4cb7-813e-1f8ef216fdf7",
+		"name": "ml-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/algo/lr/info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{hostURL}}/algo/lr/info",
+					"host": [
+						"{{hostURL}}"
+					],
+					"path": [
+						"algo",
+						"lr",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/algo/lr/status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{hostURL}}/algo/lr/status",
+					"host": [
+						"{{hostURL}}"
+					],
+					"path": [
+						"algo",
+						"lr",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/algo/lr/predict",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"inputKey\" : {\n    \"Node Count\": \"val\",\n    \"CPU_Usage\": \"val\",\n    \"Mem_Usage\": \"val\",\n    \"Hertz\": \"val\",\n    \"MEM_GB\": \"val\",\n    \"CPU_Count\": \"val\",\n    \"Hardisk_HDD1\": \"val\",\n    \"Total_TPS\": \"val\"\n}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostURL}}/algo/lr/predict",
+					"host": [
+						"{{hostURL}}"
+					],
+					"path": [
+						"algo",
+						"lr",
+						"predict"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/algo/lr/train",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fileLocation\": \"/Users/satbasu/PycharmProjects/skeleton-python-api/restful-nodb/data/ml_data-lr-test.xlsx\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostURL}}/algo/lr/train",
+					"host": [
+						"{{hostURL}}"
+					],
+					"path": [
+						"algo",
+						"lr",
+						"train"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/algo/lr/save - Positive",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fileName\":\"lr_algo_save\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostURL}}/algo/lr/save",
+					"host": [
+						"{{hostURL}}"
+					],
+					"path": [
+						"algo",
+						"lr",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/algo/lr/save - NegativeIncorrectTag",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fileName_incorrectTag\":\"lr_algo_save\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostURL}}/algo/lr/save",
+					"host": [
+						"{{hostURL}}"
+					],
+					"path": [
+						"algo",
+						"lr",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/algo/lr/load - Positive",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fileName\":\"/Users/satbasu/PycharmProjects/skeleton-python-api/restful-nodb/lr_algo_save.dill\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostURL}}/algo/lr/load",
+					"host": [
+						"{{hostURL}}"
+					],
+					"path": [
+						"algo",
+						"lr",
+						"load"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/algo/lr/load - NegativeNotFullPath",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fileName\":\"lr_algo_save.dill\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostURL}}/algo/lr/load",
+					"host": [
+						"{{hostURL}}"
+					],
+					"path": [
+						"algo",
+						"lr",
+						"load"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
