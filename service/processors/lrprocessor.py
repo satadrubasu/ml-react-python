@@ -5,6 +5,7 @@ import time
 import pandas as pd
 from enum import Enum
 
+import numpy
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import precision_recall_fscore_support as score, f1_score
@@ -40,7 +41,7 @@ class TrainingThread (threading.Thread):
            X_train, X_test, y_train, y_test = train_test_split(inputKpiData, targetValue, test_size=0.20, random_state=19)
 
           ## Training -  fit the model with data
-           self.model.fit(X_train, y_train)
+           self.model.fit(X_train.values, y_train)
 
            y_pred = self.model.predict(X_test)
 
@@ -139,37 +140,6 @@ class LogisticRegressionAlgo:
         solitaryThread.start()
         print("Thread for training has been started , end of the method")
 
-        # try:
-        #     dataset = pd.read_excel(fileLocation)
-        #     print(f"Data Sizing : {dataset.size}" )
-        # except (Exception) as e:
-        #     print(e)
-        #     raise(e)
-        #
-        # LogisticRegressionAlgo.__instance.status = AlgoStatus.TRAINING
-        # inputKpiData = dataset[LogisticRegressionAlgo.__instance.feature_cols]  # Features
-        # targetValue = dataset.Error_Bucket  # Target variable column name
-        #
-        # # splitting data for train & Test
-        # X_train, X_test, y_train, y_test = train_test_split(inputKpiData, targetValue, test_size=0.20, random_state=19)
-        #
-        # ## Training -  fit the model with data
-        # LogisticRegressionAlgo.__instance.model.fit(X_train, y_train)
-        #
-        # y_pred = LogisticRegressionAlgo.__instance.model.predict(X_test)
-        # # TODO - y_pred vs y_train accuracy
-        # precision, recall, fscore, support = score(y_test, y_pred)
-        #
-        # # f1score = precision + recall also as fscore
-        # LogisticRegressionAlgo.__instance.modelF1scorePercentage = f1_score(y_test, y_pred)
-        # LogisticRegressionAlgo.__instance.modelAccuracyPercentage = LogisticRegressionAlgo.__instance.model.score(X_test, y_test)
-        #
-        # print('Training :  precision: {}'.format(precision))
-        # print('Training :  recall: {}'.format(recall))
-        # print('Training :  f1 score: {}'.format(fscore))
-        # print('Training :  support: {}'.format(support))
-        #print(f"### time taken in mins {(end_time_main-start_time_main)/60}")
-
 
     # Predict for a single row - ensure [[ data ]]
     @staticmethod
@@ -190,9 +160,13 @@ class LogisticRegressionAlgo:
         except (Exception) as e:
             raise e
         # TODO : wrap the input list into array of array
-        #y_predicted = LogisticRegressionAlgo.__instance.model.predict(orderedInputList)
-        #return y_predicted
-        return {"message" : "Prediction Done", "value": 200}
+        array_format = numpy.array(orderedInputList)
+        pred_check = numpy.array([array_format],numpy.int32)
+        print(f'-- Type : {type(pred_check)}')
+        y_predicted = LogisticRegressionAlgo.__instance.model.predict(pred_check)
+        #print(f"Predicted Type : {type(y_predicted)}")
+        print(f"Predicted Value : {y_predicted[0]}")
+        return {"message" : "Prediction Done", "value": y_predicted[0]}
 
     @staticmethod
     def saveTrainedModel(name="lr_algo_save"):
@@ -251,7 +225,3 @@ class LogisticRegressionAlgo:
             'f1score': LogisticRegressionAlgo.__instance.modelF1scorePercentage
         }
         return infoMapdict
-
-
-
-

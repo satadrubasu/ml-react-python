@@ -53,7 +53,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \"inputKey\" : {\n    \"Node Count\": \"val\",\n    \"CPU_Usage\": \"val\",\n    \"Mem_Usage\": \"val\",\n    \"Hertz\": \"val\",\n    \"MEM_GB\": \"val\",\n    \"CPU_Count\": \"val\",\n    \"Hardisk_HDD1\": \"val\",\n    \"Total_TPS\": \"val\"\n}\n}",
+					"raw": "{ \"inputKey\" : {\n    \"Node Count\": 8,\n    \"CPU_Usage\": 40,\n    \"Mem_Usage\": 40,\n    \"Hertz\": 11700,\n    \"MEM_GB\": 128,\n    \"CPU_Count\": 144,\n    \"Hardisk_HDD1\": 1,\n    \"Total_TPS\": 12000\n}\n}",
 					"options": {
 						"raw": {
 							"language": "json"
